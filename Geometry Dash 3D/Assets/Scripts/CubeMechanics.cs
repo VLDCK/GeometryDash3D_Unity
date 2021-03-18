@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CubeMechanics : MonoBehaviour
 {
-    public static float speedPower = 10f; // швідкість об'єкта
+    public const float speedPower = 12f; // швідкість об'єкта
     public float jumpPower = 11; // сила стрибка об'єкта
 
     float gravityForce = -1f; // гравітація об'єкта
@@ -20,6 +20,7 @@ public class CubeMechanics : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
         // посилання на компоненти об'єкта
         cubeContoller = GetComponent<CharacterController>();
         cubeBoxCollider = GetComponent<BoxCollider>();
@@ -39,7 +40,7 @@ public class CubeMechanics : MonoBehaviour
     // метод переміщення об'єкта
     private void CubeMove()
     {
-
+        
         directionMove.y = gravityForce; // вплив гравітації на об'єкт по осі ординат
         // рух зі швидкістю визначеною в полі Vector3 || швидкість 
         cubeContoller.Move(directionMove * Time.deltaTime);   

@@ -15,7 +15,8 @@ public class MenuController : MonoBehaviour
 {
     public GameObject MainMenuButtons;
     public GameObject SettingMenuButtons;
-
+    public GameObject HelpPlayMenuButtons;
+  
     public void StartGame()
     {
       SceneManager.LoadScene("SimpleScene");
@@ -29,10 +30,20 @@ public class MenuController : MonoBehaviour
     }
 
     //Виклик основного меню 
-    public void CallingMainMenu()
+    public void CallinBackMainMenu()
     {
         MainMenuButtons.SetActive(true);
         SettingMenuButtons.SetActive(false);
+        HelpPlayMenuButtons.SetActive(false);
+    }
+
+    //Виклик допомоги в управлінні 
+    public void CallingHelpGuideMenu()
+    {
+       SettingMenuButtons.SetActive(false);
+       HelpPlayMenuButtons.SetActive(true);
+       
+       
     }
 
     //Вихід з гри
