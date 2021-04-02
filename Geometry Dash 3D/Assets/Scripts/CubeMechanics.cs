@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class CubeMechanics : MonoBehaviour
 {
-    public const float speedPower = 14f; // швідкість об'єкта
+    public const float SPEED_POWER = 14f; // швідкість об'єкта
     public float jumpPower = 11; // сила стрибка об'єкта
 
     float gravityForce = -1f; // гравітація об'єкта
-    private Vector3 directionMove = new Vector3(0,0, speedPower); // напрямок руху
+    private Vector3 directionMove = new Vector3(0,0, SPEED_POWER); // напрямок руху
     public float rotationSpeed;  // швидкість обератання
 
     public float adjustFactorOfRotation = 100;// для регулювання коефіцієнту обертання до прямого кута
 
     public static CharacterController cubeContoller; // компонент куба, контроллер
-    
 
     
     // Start is called before the first frame update
@@ -25,11 +24,11 @@ public class CubeMechanics : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         CubeMove(); // виклик методу руху об'єкта 
 
-        Graviry(); // виклик методу обчислення гравітаціїї для об'єкта
+        GraviryAndEffect(); // виклик методу обчислення гравітаціїї для об'єкта
 
         Rotate(); // виклик методу обертання для об'єкта
 
@@ -41,19 +40,29 @@ public class CubeMechanics : MonoBehaviour
     private void CubeMove()
     {
         directionMove.y = gravityForce; // вплив гравітації на об'єкт по осі ординат
-        // рух зі швидкістю визначеною в полі Vector3 - швидкість 
-        cubeContoller.Move(directionMove * Time.deltaTime);   
+                                        // рух зі швидкістю визначеною в полі Vector3 - швидкість 
+        cubeContoller.Move(directionMove * Time.deltaTime);
     }
 
+
     //метод гравітації об'єкта
-    private void Graviry()
+    void GraviryAndEffect()
     {
-        if (!cubeContoller.isGrounded){
+        OnGround();
+        InSky();
+    }
+    void OnGround() 
+    {
+        if (!cubeContoller.isGrounded)
+        {
             gravityForce -= 30f * Time.deltaTime;
+            //effectScript.EffectPlay();
         }
         else gravityForce = -1f;
-
-        if (cubeContoller.isGrounded && Input.GetKey(KeyCode.Space))
+    }
+    void InSky() 
+    {
+        if (cubeContoller.isGrounded && Input.GetKey(KeyCode.Space))                                   
         {
             gravityForce = jumpPower;
         }
@@ -87,10 +96,11 @@ public class CubeMechanics : MonoBehaviour
                     adjustFactorOfRotation);
             }
         }
-
     }
 
-   
+
+    
+
 }
 
      

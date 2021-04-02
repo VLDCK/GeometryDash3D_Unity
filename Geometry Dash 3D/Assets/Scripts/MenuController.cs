@@ -11,40 +11,38 @@ using UnityEngine.SceneManagement;
 ///     Функція перегляду статистики за ігровий період
 /// </summary>
 
+
 public class MenuController : MonoBehaviour
 {
-    public GameObject MainMenuButtons;
-    public GameObject SettingMenuButtons;
-    public GameObject HelpPlayMenuButtons;
+    public GameObject mainMenuButtons;
+    public GameObject settingMenuButtons;
+    public GameObject helpPlayMenuButtons;
   
     public void StartGame()
     {
-      SceneManager.LoadScene(1);
-      
+       SceneManager.LoadScene(1);
     }
 
     //Виклик меню налаштування
     public void CallingSettingMenu() 
     {
-        MainMenuButtons.SetActive(false);
-        SettingMenuButtons.SetActive(true);
+        mainMenuButtons.SetActive(false);
+        settingMenuButtons.SetActive(true);
     }
 
     //Виклик основного меню 
     public void CallinBackMainMenu()
     {
-        MainMenuButtons.SetActive(true);
-        SettingMenuButtons.SetActive(false);
-        HelpPlayMenuButtons.SetActive(false);
+        mainMenuButtons.SetActive(true);
+        settingMenuButtons.SetActive(false);
+        helpPlayMenuButtons.SetActive(false);
     }
 
     //Виклик допомоги в управлінні 
     public void CallingHelpGuideMenu()
     {
-       SettingMenuButtons.SetActive(false);
-       HelpPlayMenuButtons.SetActive(true);
-       
-       
+        settingMenuButtons.SetActive(false);
+        helpPlayMenuButtons.SetActive(true);
     }
 
     //Вихід з гри

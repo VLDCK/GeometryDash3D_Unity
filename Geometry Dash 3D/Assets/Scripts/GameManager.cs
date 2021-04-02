@@ -5,17 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public int CountOfDying { get; set; } = 0;
-    
-    public void PauseGame()
+    public void GameOver()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {       
-            Debug.Log("Its pressed escape");
-        }
+        Score.CountOfDying++;
+        SceneManager.LoadScene(2);
+
     }
-    public void GameOver() 
-    {
-        CountOfDying++;
-    }
+
+   
 }

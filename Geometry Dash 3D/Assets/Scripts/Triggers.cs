@@ -4,25 +4,31 @@ using UnityEngine;
 
 public class Triggers : MonoBehaviour
 {
-    public GameManager gameManager;
-    [SerializeField] private Transform gameObjectPoint;
-    [SerializeField] private Transform spawnPosition;
+    public RespawnScript respawn;
+    public ObjectChanger objectChanger;
+
     
-    public void OnTriggerEnter(Collider dieTrigger)
+    public void OnTriggerEnter(Collider trigger)
     {
-        if(dieTrigger.tag=="Respawn")
+        if (trigger.tag == "Respawn") 
         {
-            gameManager.GameOver();
-            gameObjectPoint.transform.position = spawnPosition.transform.position;
-            Physics.SyncTransforms();
+            respawn.RespawnObject();
         }
-    }
-    public void OnTriggerExit(Collider finish)
-    {
-        if (finish.tag == "Finish")
+
+        if (trigger.tag == "ChangeObjectCube") 
+        {
+            objectChanger.ChangeToAirplane();
+        }
+
+        if (trigger.tag == "ChangeObjectAirplane")
+        {
+            objectChanger.ChangeToCube();
+        }
+
+        if (trigger.tag == "Finish")
         {
             Debug.Log("its finish");
-            //gameManager.GameOver();
+
         }
     }
 }
