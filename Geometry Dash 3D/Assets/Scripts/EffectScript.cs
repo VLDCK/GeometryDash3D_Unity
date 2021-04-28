@@ -6,10 +6,7 @@ public class EffectScript : MonoBehaviour
 {
     public ParticleSystem cubeEffects;
 
-    public CharacterController cubeContoller = CubeMechanics.cubeContoller; // компонент куба, контроллер
-
-   
-    // Update is called once per frame
+    public CharacterController cubeContoller = CubeMechanics.cubeContoller; 
     void Update()
     {
         EffectPlayCube();
